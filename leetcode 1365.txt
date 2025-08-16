@@ -1,0 +1,85 @@
+leetcode 1365:
+class Solution {// all the code should be inside the class
+    public int[] smallerNumbersThanCurrent(int[] nums) {// here are taking array as input and will be giving array as the output. so int[], int[].
+    int n = nums.length;//to know the array length of the input element
+    int[] ans= new int[n];// we need new array of the same length as the i/p array to store the output
+    for(int i = 0; i<nums.length;i++){//to iterate through all the elements in the array once
+    int count = 0;//to set the count back to 0 after one iteration of the loop that will be coming inside & to count the operation that will be happening inside the inner loop
+    for(int j = 0 ; j<nums.length;j++){// this will also iterate through the whole element in the array,when the outerloop is at first element it will go through all the elements in the array, i is at 2nd element it again walks through all the element in the array likeswise it will go on till it reach the last element in the outer loop
+    if(nums[i]>nums[j]){// checks whether the elemnt of j are smaller than the ith element
+    count++;//on satisfying the above if condition the count will increment.
+    } 
+ 
+
+    }
+       ans[i]=count;//feeds the count of the smaller elements when compared to that of ith element into the array of ans.this should be done outside the inner loop
+ 
+    }
+
+   return ans;// this will return the ans and this should be done outside the outer loop
+
+        }
+        
+    }
+
+
+
+
+
+/////////////////////////////////////OR////////////////////////////////////////////////////////////
+
+
+import java.util.Arrays;
+
+public class Solution {
+    // Main method that returns an array where each element tells
+    // how many numbers in nums are smaller than that element.
+    public static int[] smallerNumbersThanCurrent(int[] nums) {
+        int n = nums.length; // Length of the input array nums
+
+        int[] ans = new int[n]; // Array to store the result counts for each element
+
+        int[] sorted = nums.clone(); // Create a copy of nums to sort without modifying original
+
+        Arrays.sort(sorted); // Sort the copied array so we can find the rank of each number
+
+        // For each element in the original array...
+        for (int i = 0; i < n; i++) {
+            // Find the first occurrence index of nums[i] in the sorted array,
+            // which equals how many numbers are smaller than nums[i]
+            ans[i] = findFirstIndex(sorted, nums[i]);
+        }
+
+        return ans; // Return the array with counts of smaller numbers for each element
+    }
+
+    // Helper method to perform a binary search to find the
+    // first index where target appears or could be inserted in sorted order
+    private static int findFirstIndex(int[] nums, int target) {
+        int start = 0; // Starting index of the search range
+        int end = nums.length - 1; // Ending index of the search range
+
+        int result = nums.length; // Initialize result to length (meaning "not found yet")
+
+        // Binary search loop
+        while (start <= end) {
+            int middle = start + (end - start) / 2; // Middle index of current search range
+
+            if (nums[middle] >= target) {
+                // If middle element is greater or equal to target,
+                // update result because this could be the first occurrence
+                result = middle;
+
+                // Move left to find if there is an earlier occurrence
+                end = middle - 1;
+            } else {
+                // If middle element is less than target,
+                // move right to search higher values
+                start = middle + 1;
+            }
+        }
+
+        return result; // Return the lowest index where target is found or could be inserted
+    }
+}
+
