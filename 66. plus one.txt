@@ -1,0 +1,101 @@
+66. plus one
+
+///The correct solution is::
+ 
+
+class Solution {//java should be written inside the class
+    public int[] plusOne(int[] digits) {//it takes array digits as input return array as output 
+        for(int i = digits.length-1 ; i >= 0 ; i-- ){// have to iterate from right to left t in case //of last element being 9
+            if(digits[i]<9){//if digit is less than 9 add +1 and return else add 0 to the end
+                digits[i]++;
+                return digits;// return the result 
+            }else{
+                digits[i]=0;
+            }
+        }
+        int[] newdig = new int[digits.length+1];// if all the digits are 9 create array.length+1 //new array eg:eg [9,9,9]--------------->[1,0,0,0]
+        newdig[0] = 1;// why only the 0th element being 1 because array's default value is 0.
+        return newdig;// return the answer.
+        
+    }
+}
+
+
+/*eg1::::
+i/p = 249
+iterate from right to left
+9<9 no , set to 0.... 240
+4<9 so 4+1. return immediatey so it won't check 2
+return 250
+
+eg2;;;;;
+i/p = 999
+iterates right to left
+since 9 < 9
+Start from rightmost 9:
+
+9 < 9? ❌ No → set to 0 → [9,9,0]
+
+Move left (9):
+
+9 < 9? ❌ No → set to 0 → [9,0,0]
+
+Move left (9):
+
+9 < 9? ❌ No → set to 0 → [0,0,0]
+it becomes 000 loop ends and move to the code 
+int[] newdig = new int[digits.length+1];
+newdig[0] = 1;
+return newdig;   and return 1000
+*/
+
+
+
+// My first solution
+class Solution {
+    public int[] plusOne(int[] digits) {
+
+        int n = digits.length;
+        for(int i = 0 ; i < n ; i++){// should have done iteration from right to carry in case of //carry eg [9,9,9]--------------->[1,0,0,0]
+            int newdig = digits[n+1];
+        }
+        return new int[](newdig);
+        
+    }
+}
+
+//mistakes
+//1)should have thought about cases like 99
+//to return a new array the correct format is //return new int[]{newdig};
+
+//2nd method
+class Solution {
+    public int[] plusOne(int[] digits) {
+
+        
+        for(int i = digits.length-1 ; i >= 0 ; i-- ){
+            if(digits[i]<9){
+                //digits[i]++;
+                return digits[i]++;
+            }else{
+                digits[i]=0;
+            }
+        }
+        int[] newdig = new int[digits.length+1];
+        newdig[0] = 1;
+        return newdig;
+        
+    }
+}
+
+/*error:
+Line 8: error: incompatible types: int cannot be converted to int[]
+                return digits[i]++;
+
+solution : public int[] plusOne(int[] digits)
+it have to return an array of answer but this line  return digits[i]++; returns only the digit.
+it should be like this::
+ if(digits[i]<9){
+                digits[i]++;
+                return digits;
+*/
