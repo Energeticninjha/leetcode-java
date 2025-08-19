@@ -1,0 +1,38 @@
+1920.Build Array from Permutation
+
+/* understanding the problem:  
+
+Input:
+nums = [0,2,1,5,3,4]
+stepwise working of the sum: 
+ans[0] = nums[nums[0]] = nums[0] = 0
+
+ans[1] = nums[nums[1]] = nums[2] = 1
+
+ans[2] = nums[nums[2]] = nums[1] = 2
+
+ans[3] = nums[nums[3]] = nums[5] = 4
+
+ans[4] = nums[nums[4]] = nums[3] = 5
+
+ans[5] = nums[nums[5]] = nums[4] = 3
+Output: 
+ans = [0,1,2,4,5,3]  */
+
+// coding solution: 
+class Solution {// the program should be inside the class
+    public int[] buildArray(int[] nums) {// this will take array as input and will return array as //the output
+        
+        int n = nums.length;// to get the size of the array
+        int[] ans = new int[n];// to create a new array which is of the same length as the input //array
+
+        for(int i=0;i<n;i++){// to iterate through every elements int the array one by one
+            ans[i] = nums[nums[i]];// as given in the question the nums[i] to get the array //element , these elements are again fed as index position to the array and these value will be //stored into the ans
+
+        }
+        return ans;// will return the ans
+    }
+}
+
+
+// My study resource link:::https://chatgpt.com/share/68a4a141-f954-800c-b20f-a52b833bb9b5
