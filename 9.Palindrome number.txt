@@ -1,0 +1,23 @@
+9.Palindrome number
+
+public class CheckPalindrome{// every java have to be inside the class. the class name should be //same as the file name.
+
+public boolean isPalindrome(int x){// method to check if it is palindrome
+
+int reversednumber = 0;// declaring the reversed number as 0 to get the reversed no
+int originalnumber = x;// declaring the original number for comparison at the return statement as //the value of x becomes 0 due to the line x /= 10;
+
+if(x < 0) return false;//if the value is less than x it will return 0
+
+while(x != 0){// this will run when the x is not 0
+
+int rem = x%10;// to get the last number from the int
+reversednumber = (reversednumber * 10) + rem;// to get the reversed number
+
+x /= 10;// to get the last remaining element and get 0
+
+}
+return originalnumber == reversednumber;// return true if both are equal else false
+}
+
+}
